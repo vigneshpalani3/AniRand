@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 3000
 const cors = require('cors')
 const {dbConnect} = require('./db.js')
 
-app.use(cors({origin:'http://localhost:5173'}))
+app.use(cors({origin:'https://anirand.onrender.com'}))
 
 app.use(express.urlencoded({extended:false}))
 app.use(express.json())
