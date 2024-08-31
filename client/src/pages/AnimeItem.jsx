@@ -46,7 +46,7 @@ function AnimeItem({anime,setAnime}){
     async function addItem(){
         try{
             console.log('adding')
-            const response = await fetch('http://localhost:4500',{
+            const response = await fetch('https://anirand-backend.onrender.com',{
                 method:'POST',
                 headers:{
                     'Content-Type':'application/json'
@@ -77,7 +77,7 @@ function AnimeItem({anime,setAnime}){
     async function removeItem(){
         try{
             console.log('removing')
-            const response = await fetch(`http://localhost:4500/${id}`,{
+            const response = await fetch(`https://anirand-backend.onrender.com/${id}`,{
                 method:'DELETE',
                 headers:{
                     'Content-Type':'application/json'
