@@ -15,7 +15,7 @@ function App() {
 
   async function getData(){
     try{
-      const response = await fetch('http://localhost:4500')
+      const response = await fetch('https://anirand-backend.onrender.com')
       const data = await response.json()
       if(response.ok) return setAnime(data)
     }catch(err){
