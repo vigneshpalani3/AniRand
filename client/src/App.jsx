@@ -20,6 +20,7 @@ function App() {
       if(response.ok) return setAnime(data)
     }catch(err){
       console.log(err)
+      getData()
     }
   }
 
