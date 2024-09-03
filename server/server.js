@@ -10,9 +10,9 @@ app.use(cors({origin:'https://anirand.onrender.com'}))
 app.use(express.urlencoded({extended:false}))
 app.use(express.json())
 
-const animeModel = require('./Models/AnimeModel')
-
 dbConnect()
+
+const animeModel = require('./Models/AnimeModel')
 
 app.post('/',async (req,res)=>{
     const {data} =req.body
