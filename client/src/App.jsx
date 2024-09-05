@@ -18,16 +18,15 @@ function App() {
       const response = await fetch('https://anirand-backend.onrender.com')
       const data = await response.json()
       if(response.ok){
-        console.log(data[0].data.title_english)
-        //data.sort((a,b)=>{
-          //if (a.data.title_english.toLowerCase() < b.data.title_english.toLowerCase()) {
-            //return -1;
-         // }
-         // if (a.data.title_english.toLowerCase() > b.data.title_english.toLowerCase()) {
-           // return 1;
-        //  }
-         //   return 0;
-    //    })
+        data.sort((a,b)=>{
+          if (a.data.title_english.toLowerCase() || '' < b.data.title_english.toLowerCase() || '') {
+            return -1;
+          }
+          if (a.data.title_english.toLowerCase() || '' > b.data.title_english.toLowerCase() || '') {
+            return 1;
+          }
+            return 0;
+        })
       }
     }catch(err){
       console.log(err)
