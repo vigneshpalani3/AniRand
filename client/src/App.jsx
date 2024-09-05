@@ -17,7 +17,17 @@ function App() {
     try{
       const response = await fetch('https://anirand-backend.onrender.com')
       const data = await response.json()
-      if(response.ok) return setAnime(data)
+      if(response.ok){
+        data.sort((a,b)=>{
+          if (a.data.title_english.toLowerCase() < b.data.title_english.toLowerCase()) {
+            return -1;
+          }
+          if (a.data.title_english.toLowerCase() > b.data.title_english.toLowerCase()) {
+            return 1;
+          }
+            return 0;
+        })
+      }
     }catch(err){
       console.log(err)
       getData()
