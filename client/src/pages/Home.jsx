@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const Home = ({anime,goRandom}) =>{
     const navigate = useNavigate()
     const [input,setInput] = useState('')
-    useEffect(()=>{console.log(anime?.length)},[anime])
+    useEffect(()=>{console.log(anime)},[anime])
     
     async function handleInput(){
         try{
