@@ -16,7 +16,7 @@ function AnimeItem({anime,setAnime}){
 
     async function checkIsSelected(){
         try{
-            const response = await fetch(`http://localhost:3000/check/${item.mal_id}`)
+            const response = await fetch(`https://anirand-backend.onrender.com/check/${item.mal_id}`)
             const result= await response.json()
             console.log(result)
             if(response.ok && result.isExist){
