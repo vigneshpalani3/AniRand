@@ -5,7 +5,17 @@ const PORT = process.env.PORT || 3000
 const cors = require('cors')
 const {dbConnect} = require('./db.js')
 
-app.use(cors({origin:'https://anirand.onrender.com'}))
+const allowedOrigins=['https://anirand.onrender.com','http://localhost:5173']
+const corsOptions={
+    origin:function(origin,callback){
+        if(allowedOrigins.indexOf(origin)!==-1 || !origin){
+            callback(null,true);
+        }else{
+            calllback(new Error("not allowed by CORS"))
+        }
+    }
+}
+app.use(cors())
 
 app.use(express.urlencoded({extended:false}))
 app.use(express.json())
