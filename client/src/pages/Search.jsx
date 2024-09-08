@@ -19,7 +19,11 @@ function Search(){
             if(newItem) pageRef.current=1
             const response = await fetch(`https://api.jikan.moe/v4/anime?q=${input}&page=${newItem?1:pageRef.current}`)
             const data = await response.json()
-            if(response.ok) return navigate('/search',{state:{data}}) 
+            if(response.ok){
+                navigate('/search',{state:{data}}) 
+                window.scrollTo(0,0)
+                return 
+            }
             console.log(data)
         }catch(err){
             console.log(err)

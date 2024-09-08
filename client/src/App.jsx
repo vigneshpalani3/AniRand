@@ -27,7 +27,11 @@ function App() {
       const response = await fetch(`https://anirand-backend.onrender.com?page=${pageNo}`)
       const data = await response.json()
       console.log(data)
-      if(response.ok) return setAnime(data)
+      if(response.ok){
+        setAnime(data)
+        window.scrollTo(0,0)
+        return
+      }
     }catch(err){
       console.log(err)
       getData()
