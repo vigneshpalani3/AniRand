@@ -7,16 +7,26 @@ import Search from "./pages/Search"
 function App() {
   const [anime,setAnime] = useState()
 
-  function goRandom(navigate){
-    if(!anime) return
-    const randomIndex = Math.floor(Math.random()*anime.length)
-    navigate('/animeItem',{state:{data:anime[randomIndex].data}})
+  async function goRandom(navigate){
+    try{
+      const response=await fetch('https://anirand-backend.onrender.com/random')
+      const result = await response.json()
+      if(response.ok){
+        navigate('/animeItem',{state:{data:result.data.data,isRand:true}})
+      }
+        console.log(result)
+    }catch(err){
+      console.error(err)
+    }
   }
 
-  async function getData(){
+  //https://anirand-backend.onrender.com
+
+  async function getData(pageNo){
     try{
-      const response = await fetch('https://anirand-backend.onrender.com')
+      const response = await fetch(`https://anirand-backend.onrender.com?page=${pageNo}`)
       const data = await response.json()
+      console.log(data)
       if(response.ok) return setAnime(data)
     }catch(err){
       console.log(err)
@@ -25,14 +35,14 @@ function App() {
   }
 
   useEffect(()=>{
-    getData()
+    getData(1)
   },[])
 
   return (
     <BrowserRouter>
       <main>
         <Routes>
-          <Route path="/" element={<Home anime={anime} goRandom={goRandom}/>}/>
+          <Route path="/" element={<Home getData={getData} anime={anime} goRandom={goRandom}/>}/>
           <Route path="/animeItem" element={<AnimeItem anime={anime} setAnime={setAnime}/>}/>
           <Route path="/search" element={<Search />}/>
         </Routes>

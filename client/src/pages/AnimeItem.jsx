@@ -5,32 +5,29 @@ import { CgProfile } from "react-icons/cg";
 
 function AnimeItem({anime,setAnime}){
     const location = useLocation()
-    const [item,setItem] = useState()
+    const [item,setItem] = useState(location.state.data)
     const [isShrink,setIsShrink] = useState(true)
     const [isSelected,setIsSelected] = useState(false)
     const [id,setId] = useState()
-    useEffect(()=>{
-        const {data} = location.state
-        console.log(data)
-        setItem(data)
-    },[])
     
     useEffect(()=>{
-        checkIsSelected()
+        if(item) checkIsSelected()
     },[item])
 
-    function checkIsSelected(){
-        console.log('checking')
-        if(!anime?.length) return
-        const match =anime?.find(animeItem=>animeItem?.data?.mal_id===item?.mal_id)
-        console.log(match)
-        if(match){
-            console.log('yes')
-            setIsSelected(true)
-            setId(match._id)
-            return
+    async function checkIsSelected(){
+        try{
+            const response = await fetch(`http://localhost:3000/check/${item.mal_id}`)
+            const result= await response.json()
+            console.log(result)
+            if(response.ok && result.isExist){
+                setId(result.id)
+                setIsSelected(true)
+                return
+            }
+            setIsSelected(false)
+        }catch(err){
+            console.error(err)
         }
-        setIsSelected(false)
     }
 
     function handleActions(){
@@ -139,7 +136,9 @@ function AnimeItem({anime,setAnime}){
                         </div>
 )
                     }
-                    <button onClick={handleActions} className={`action-btn ${isSelected?'del':'add'}`}>{isSelected?'Remove From List':'Add To List'}</button>
+                    {
+                        location.state.isRand||<button onClick={handleActions} className={`action-btn ${isSelected?'del':'add'}`}>{isSelected?'Remove From List':'Add To List'}</button>
+                    }
                 </div>
             )
         }

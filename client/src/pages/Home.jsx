@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import AnimeTile from "../components/AnimeTile";
 import { useNavigate } from "react-router-dom";
+import { HiOutlineArrowSmallLeft, HiOutlineArrowSmallRight } from "react-icons/hi2";
 
-const Home = ({anime,goRandom}) =>{
+const Home = ({anime,goRandom,getData}) =>{
     const navigate = useNavigate()
     const [input,setInput] = useState('')
-    useEffect(()=>{console.log(anime)},[anime])
-    
+    const homePageRef = useRef(1)
+
     async function handleInput(){
         try{
             console.log('working')
@@ -28,8 +29,8 @@ const Home = ({anime,goRandom}) =>{
             </div>
             <div className="home__anime-list">
                 {
-                    anime?.length?(
-                        anime?.map(item=>(
+                    anime?.data?.length?(
+                        anime?.data?.map(item=>(
                             <AnimeTile item={item.data} key={item._id}/>
                         ))
                     ):(
@@ -38,7 +39,20 @@ const Home = ({anime,goRandom}) =>{
                         </div>
                     )
                 }
-            </div>
+            </div>{
+                anime?.data&&(
+                <div className="home__page-btns">
+                    {homePageRef.current>1 && <button onClick={()=>{
+                        homePageRef.current-=1
+                        getData(homePageRef.current)
+                        }}><HiOutlineArrowSmallLeft className="arrows"/></button>}
+                    {anime?.pagination?.hasNextPage&&<button onClick={()=>{
+                        homePageRef.current+=1
+                        getData(homePageRef.current)
+                        }}><HiOutlineArrowSmallRight className="arrows"/></button>}
+                </div>
+                )
+            }
             <button className="go-random-btn" onClick={()=>goRandom(navigate)}>Go Random</button>
         </>
     )

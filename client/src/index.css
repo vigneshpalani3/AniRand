@@ -23,10 +23,10 @@ body{
     align-self: center;
 }
 .home__anime-list{
-    margin-top: 2rem;
+    margin-block: 2rem;
     display: grid;
     gap: 0.75rem;
-    margin-bottom: 4rem;
+
 }
 .anime-item{
     display: flex;
@@ -262,17 +262,20 @@ body{
     align-self: flex-start;
     color: hsl(140, 84%, 40%);
 }
-.page-btns{
+.home__page-btns{
+    margin-bottom: 4rem;
+}
+.page-btns,.home__page-btns{
     display: flex;
     justify-content: space-evenly;
     margin-inline: 2rem;
-    &>button{
-        border: none;
-        background-color: hsl(140, 84%, 29%);
-        padding-top: 4px;
-        padding-inline: 1rem;
-        border-radius: 2px;
-    }
+}
+button:has(.arrows){
+    border: none;
+    background-color: hsl(140, 84%, 29%);
+    padding-top: 4px;
+    padding-inline: 1rem;
+    border-radius: 2px;
 }
 .arrows{
     font-size: 1.1rem;
