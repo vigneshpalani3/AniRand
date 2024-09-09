@@ -45,6 +45,7 @@ function AnimeItem({anime,setAnime}){
             console.log('adding')
             const response = await fetch('https://appsail-50022186074.development.catalystappsail.in',{
                 method:'POST',
+                mode:'no-cors',
                 headers:{
                     'Content-Type':'application/json'
                 },
