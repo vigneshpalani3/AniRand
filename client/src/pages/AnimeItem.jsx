@@ -16,7 +16,7 @@ function AnimeItem({anime,setAnime}){
 
     async function checkIsSelected(){
         try{
-            const response = await fetch(`https://anirand-backend.onrender.com/check/${item.mal_id}`)
+            const response = await fetch(`https://appsail-50022186074.development.catalystappsail.in/check/${item.mal_id}`)
             const result= await response.json()
             console.log(result)
             if(response.ok && result.isExist){
@@ -43,7 +43,7 @@ function AnimeItem({anime,setAnime}){
     async function addItem(){
         try{
             console.log('adding')
-            const response = await fetch('https://anirand-backend.onrender.com',{
+            const response = await fetch('https://appsail-50022186074.development.catalystappsail.in',{
                 method:'POST',
                 headers:{
                     'Content-Type':'application/json'
@@ -74,7 +74,7 @@ function AnimeItem({anime,setAnime}){
     async function removeItem(){
         try{
             console.log('removing')
-            const response = await fetch(`https://anirand-backend.onrender.com/${id}`,{
+            const response = await fetch(`https://appsail-50022186074.development.catalystappsail.in/${id}`,{
                 method:'DELETE',
                 headers:{
                     'Content-Type':'application/json'
