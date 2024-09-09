@@ -62,7 +62,7 @@ function AnimeItem({anime,setAnime}){
                     data:item,
                     _id:result.itemId
                 }
-                const newList=[...anime,newItem]
+                const newList=anime.length?[...anime,newItem]:[newItem]
                 setAnime(newList)
                 setId(result.itemId)
                 console.log('added')
@@ -84,7 +84,7 @@ function AnimeItem({anime,setAnime}){
             })
             if(response.ok){
                 console.log(anime[0])
-                const rest = anime.filter(animeItem=>animeItem.data.mal_id!==item.mal_id)
+                const rest = anime?.filter(animeItem=>animeItem.data.mal_id!==item.mal_id)
                 console.log(rest)
                 setAnime(rest)
                 console.log('removed')
