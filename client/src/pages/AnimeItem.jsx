@@ -16,7 +16,7 @@ function AnimeItem({anime,setAnime}){
 
     async function checkIsSelected(){
         try{
-            const response = await fetch(`https://appsail-50022186074.development.catalystappsail.in/check/${item.mal_id}`)
+            const response = await fetch(`https://ani-rand-server.vercel.app/check/${item.mal_id}`)
             const result= await response.json()
             console.log(result)
             if(response.ok && result.isExist){
@@ -47,7 +47,7 @@ function AnimeItem({anime,setAnime}){
                     data:item
                 })
             console.log(requestBody)
-            const response = await fetch('https://appsail-50022186074.development.catalystappsail.in',{
+            const response = await fetch('https://ani-rand-server.vercel.app',{
                 method:'POST',
                 headers:{
                     'Content-Type':'application/json'
@@ -76,7 +76,7 @@ function AnimeItem({anime,setAnime}){
     async function removeItem(){
         try{
             console.log('removing')
-            const response = await fetch(`https://appsail-50022186074.development.catalystappsail.in/${id}`,{
+            const response = await fetch(`https://ani-rand-server.vercel.app/${id}`,{
                 method:'DELETE',
                 headers:{
                     'Content-Type':'application/json'
