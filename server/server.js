@@ -48,7 +48,6 @@ app.delete('/:id',async (req,res)=>{
 
 app.get('/',async (req,res)=>{
     const {page,limit=25} = req.query
-    console.log(page)
     try{
         const allData = await animeModel.find().skip((page-1)*limit).limit(limit)
         const hasNextPage = await animeModel.countDocuments() > (page*limit)
