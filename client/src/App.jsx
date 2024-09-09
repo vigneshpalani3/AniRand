@@ -9,7 +9,7 @@ function App() {
 
   async function goRandom(navigate){
     try{
-      const response=await fetch('https://appsail-50022186074.development.catalystappsail.in/random')
+      const response=await fetch('https://ani-rand-server.vercel.app/random')
       const result = await response.json()
       if(response.ok){
         navigate('/animeItem',{state:{data:result.data.data,isRand:true}})
@@ -24,7 +24,7 @@ function App() {
 
   async function getData(pageNo){
     try{
-      const response = await fetch(`https://appsail-50022186074.development.catalystappsail.in?page=${pageNo}`)
+      const response = await fetch(`https://ani-rand-server.vercel.app?page=${pageNo}`)
       const data = await response.json()
       console.log(data)
       if(response.ok){
