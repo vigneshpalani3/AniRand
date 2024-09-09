@@ -43,15 +43,16 @@ function AnimeItem({anime,setAnime}){
     async function addItem(){
         try{
             console.log('adding')
+            const requestBody=JSON.stringify({
+                    data:item
+                })
+            console.log(requestBody)
             const response = await fetch('https://appsail-50022186074.development.catalystappsail.in',{
                 method:'POST',
-                mode:'no-cors',
                 headers:{
                     'Content-Type':'application/json'
                 },
-                body:JSON.stringify({
-                    data:item
-                })
+                body:requestBody
             })
 
             const result = await response.json()
