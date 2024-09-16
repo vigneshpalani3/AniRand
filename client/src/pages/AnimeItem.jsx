@@ -58,12 +58,6 @@ function AnimeItem({anime,setAnime}){
             const result = await response.json()
             console.log(result)
             if(response.ok){
-                const newItem={
-                    data:item,
-                    _id:result.itemId
-                }
-                const newList=anime.length?[...anime,newItem]:[newItem]
-                setAnime(newList)
                 setId(result.itemId)
                 console.log('added')
                 setIsSelected(true)
@@ -83,10 +77,6 @@ function AnimeItem({anime,setAnime}){
                 }
             })
             if(response.ok){
-                console.log(anime[0])
-                const rest = anime?.filter(animeItem=>animeItem.data.mal_id!==item.mal_id)
-                console.log(rest)
-                setAnime(rest)
                 console.log('removed')
                 setIsSelected(false)
             }
