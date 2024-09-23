@@ -124,7 +124,9 @@ function AnimeItem({anime,setAnime}){
                     { item.trailer.embed_url&&(
                         <div className="trailer">
                             <h2>Trailer</h2>
-                            <iframe src={item.trailer.embed_url} allowFullScreen></iframe>
+                            <iframe src={item.trailer.embed_url} 
+                                allowFullScreen
+                allow='accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture'></iframe>
                         </div>
 )
                     }
