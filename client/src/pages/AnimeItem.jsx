@@ -124,7 +124,7 @@ function AnimeItem({anime,setAnime}){
                     { item.trailer.embed_url&&(
                         <div className="trailer">
                             <h2>Trailer</h2>
-                            <iframe src={item.trailer.embed_url}></iframe>
+                            <iframe src={item.trailer.embed_url} allowFullScreen></iframe>
                         </div>
 )
                     }
